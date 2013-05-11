@@ -24,10 +24,10 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 
-#USE_CAMERA_STUB := true
-
 # inherit from common apq8064
 -include device/htc/apq8064-common/BoardConfigCommon.mk
+
+TARGET_SPECIFIC_HEADER_PATH := device/htc/dlx/include
 
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
@@ -47,6 +47,15 @@ TARGET_KERNEL_VERSION := 3.4
 TARGET_KERNEL_CONFIG := dlx_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/dlx
 TARGET_PREBUILT_KERNEL := device/htc/dlx/prebuilt/kernel
+
+# Camera
+USE_CAMERA_STUB := false
+TARGET_PROVIDES_CAMERA_HAL := true
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+COMMON_GLOBAL_CFLAGS += -DQCOM_BSP_CAMERA_ABI_HACK
+COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
+COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
+COMMON_GLOBAL_CFLAGS += -DHTC_CAMERA_HARDWARE
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
