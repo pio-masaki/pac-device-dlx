@@ -24,14 +24,21 @@
 # variant, so that it gets overwritten by the parent (which goes
 # against the traditional rules of inheritance).
 
-# inherit from common apq8064
--include device/htc/apq8064-common/BoardConfigCommon.mk
+# inherit from common msm8960
+-include device/htc/msm8960-common/BoardConfigCommon.mk
 
 TARGET_SPECIFIC_HEADER_PATH := device/htc/dlx/include
 
 # Flags
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+
+# Krait optimizations
+TARGET_USE_KRAIT_PLD_SET := true
+TARGET_KRAIT_BIONIC_PLDOFFS := 10
+TARGET_KRAIT_BIONIC_PLDTHRESH := 10
+TARGET_KRAIT_BIONIC_BBTHRESH := 64
+TARGET_KRAIT_BIONIC_PLDSIZE := 64
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := dlx
@@ -46,7 +53,13 @@ BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
 TARGET_KERNEL_VERSION := 3.4
 TARGET_KERNEL_CONFIG := dlx_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/dlx
-TARGET_PREBUILT_KERNEL := device/htc/dlx/prebuilt/kernel
+
+# Audio
+BOARD_USES_FLUENCE_INCALL := true
+BOARD_USES_SEPERATED_AUDIO_INPUT := true
+BOARD_USES_SEPERATED_VOICE_SPEAKER := true
+TARGET_USES_QCOM_MM_AUDIO := true
+TARGET_USES_QCOM_COMPRESSED_AUDIO := true
 
 # Camera
 USE_CAMERA_STUB := false
@@ -66,9 +79,7 @@ BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 
 # Use libril in the device tree
 BOARD_PROVIDES_LIBRIL := true
-
-# HTClog
-COMMON_GLOBAL_CFLAGS += -DHTCLOG
+COMMON_GLOBAL_CFLAGS += -DNEW_LIBRIL_HTC
 
 # Lights
 TARGET_PROVIDES_LIBLIGHTS := true
