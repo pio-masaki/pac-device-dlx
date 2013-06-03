@@ -50,6 +50,7 @@ BOARD_KERNEL_BASE := 0x80600000
 BOARD_KERNEL_PAGE_SIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=dlx user_debug=31  
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
+# Let's build the kernel each time since it's always under development at this point
 TARGET_KERNEL_VERSION := 3.4
 TARGET_KERNEL_CONFIG := dlx_defconfig
 TARGET_KERNEL_SOURCE := kernel/htc/dlx
@@ -60,6 +61,7 @@ BOARD_USES_SEPERATED_AUDIO_INPUT := true
 BOARD_USES_SEPERATED_VOICE_SPEAKER := true
 TARGET_USES_QCOM_MM_AUDIO := true
 TARGET_USES_QCOM_COMPRESSED_AUDIO := true
+BOARD_HAVE_HTC_CSDCLIENT := true
 
 # Camera
 USE_CAMERA_STUB := false
