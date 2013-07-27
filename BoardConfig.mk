@@ -27,6 +27,9 @@
 # inherit from common msm8960
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
+# in case the above file is missing this
+TARGET_CPU_VARIANT := cortex-a9
+
 TARGET_SPECIFIC_HEADER_PATH := device/htc/dlx/include
 
 # Flags
@@ -118,6 +121,7 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 1946156032
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 12482248704
 BOARD_FLASH_BLOCK_SIZE := 131072
 BOARD_VOLD_MAX_PARTITIONS := 36
+RECOVERY_FSTAB_VERSION := 2
 
 # Added for Clockworkmod
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
