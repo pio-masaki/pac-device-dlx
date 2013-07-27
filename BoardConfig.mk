@@ -28,7 +28,7 @@
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
 # in case the above file is missing this
-TARGET_CPU_VARIANT := cortex-a9
+TARGET_CPU_VARIANT := krait
 
 TARGET_SPECIFIC_HEADER_PATH := device/htc/dlx/include
 
