@@ -38,11 +38,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libnetcmdiface
 
-# Custom Recovery and Charging
-PRODUCT_COPY_FILES += \
-    device/htc/dlx/recovery/sbin/choice_fn:recovery/root/sbin/choice_fn \
-    device/htc/dlx/recovery/sbin/detect_key:recovery/root/sbin/detect_key \
-    device/htc/dlx/recovery/sbin/offmode_charging:recovery/root/sbin/offmode_charging
+# Recovery
+PRODUCT_PACKAGES += \
+    init.recovery.dlx.rc \
+    choice_fn \
+    detect_key \
+    offmode_charging \
+    power_test
 
 # Get the sample verizon list of APNs
 PRODUCT_COPY_FILES += device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml
@@ -54,6 +56,8 @@ else
     NFCEE_ACCESS_PATH := device/htc/dlx/configs/nfcee_access_debug.xml
 endif
 PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
+    frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
     $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml \
     frameworks/base/nfc-extras/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
@@ -62,11 +66,6 @@ PRODUCT_COPY_FILES += \
 # Media configs
 PRODUCT_COPY_FILES += device/htc/dlx/configs/AudioBTID.csv:system/etc/AudioBTID.csv
 PRODUCT_COPY_FILES += device/htc/dlx/configs/AudioBTIDnew.csv:system/etc/AudioBTIDnew.csv
-PRODUCT_COPY_FILES += device/htc/dlx/configs/audio_effects.conf:system/etc/audio_effects.conf
-
-# vold config
-PRODUCT_COPY_FILES += \
-    device/htc/dlx/configs/vold.fstab:system/etc/vold.fstab
 
 # wifi config
 PRODUCT_COPY_FILES += \
@@ -178,6 +177,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.multimode_cdma=1 \
     ro.config.combined_signal=true \
     ro.gsm.data_retry_config=max_retries=infinite,5000,5000,60000,120000,480000,900000 \
+    ro.opengles.version=196608 \
     persist.eons.enabled=false
 
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \

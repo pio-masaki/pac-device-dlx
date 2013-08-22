@@ -27,9 +27,6 @@
 # inherit from common msm8960
 -include device/htc/msm8960-common/BoardConfigCommon.mk
 
-# in case the above file is missing this
-TARGET_CPU_VARIANT := krait
-
 TARGET_SPECIFIC_HEADER_PATH := device/htc/dlx/include
 
 # Flags
@@ -71,8 +68,6 @@ BOARD_HAVE_HTC_CSDCLIENT := true
 USE_CAMERA_STUB := false
 TARGET_PROVIDES_CAMERA_HAL := true
 BOARD_NEEDS_MEMORYHEAPPMEM := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_BSP_CAMERA_ABI_HACK
-COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 COMMON_GLOBAL_CFLAGS += -DHTC_CAMERA_HARDWARE
 
@@ -125,5 +120,5 @@ RECOVERY_FSTAB_VERSION := 2
 
 # Added for Clockworkmod
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
-TARGET_RECOVERY_INITRC := device/htc/dlx/recovery/init.rc
+TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_HAS_NO_SELECT_BUTTON := true
