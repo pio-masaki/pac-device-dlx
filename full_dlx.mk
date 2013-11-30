@@ -24,7 +24,7 @@ $(call inherit-product, device/htc/msm8960-common/msm8960.mk)
 $(call inherit-product, device/htc/dlx/device.mk)
 
 # The gps config appropriate for this device
-PRODUCT_COPY_FILES += device/common/gps/gps.conf_US_SUPL:system/etc/gps.conf
+PRODUCT_COPY_FILES += device/htc/dlx/gps/gps.conf:system/etc/gps.conf
 
 # Ramdisk
 PRODUCT_PACKAGES += \
@@ -45,9 +45,6 @@ PRODUCT_PACKAGES += \
     detect_key \
     offmode_charging \
     power_test
-
-# Get the sample verizon list of APNs
-PRODUCT_COPY_FILES += device/sample/etc/apns-conf_verizon.xml:system/etc/apns-conf.xml
 
 # NFCEE access control
 ifeq ($(TARGET_BUILD_VARIANT),user)
@@ -89,6 +86,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/htc/dlx/dsp/snd_soc_msm/snd_soc_msm_2x_Fusion3:/system/etc/snd_soc_msm/snd_soc_msm_2x_Fusion3 
 
+# Media
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
+
 # Keylayouts and Keychars
 PRODUCT_COPY_FILES += \
     device/htc/dlx/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
@@ -116,6 +117,10 @@ PRODUCT_COPY_FILES += \
     device/htc/dlx/idc/qwerty.idc:system/usr/idc/qwerty.idc \
     device/htc/dlx/idc/synaptics-rmi-touchscreen.idc:system/usr/idc/synaptics-rmi-touchscreen.idc
 
+# Audio
+PRODUCT_PACKAGES += \
+	libaudioamp
+
 # Camera
 PRODUCT_PACKAGES += \
 	camera.msm8960
@@ -127,6 +132,10 @@ PRODUCT_PACKAGES += \
         libloc_api_v02 \
         libgps.utils \
         gps.msm8960
+
+# Keystore
+PRODUCT_PACKAGES += \
+	keystore.msm8960
 
 # NFC
 PRODUCT_PACKAGES += \
@@ -141,11 +150,6 @@ PRODUCT_PACKAGES += \
 # Torch
 PRODUCT_PACKAGES += \
     Torch
-
-# Permissions
-PRODUCT_COPY_FILES += \
-        frameworks/native/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml \
-        frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
 
 # Increase the HWUI font cache since we have tons of RAM
 PRODUCT_PROPERTY_OVERRIDES += \

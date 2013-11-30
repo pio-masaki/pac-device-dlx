@@ -1,6 +1,3 @@
-## Specify phone tech before including full_phone
-$(call inherit-product, vendor/cm/config/cdma.mk)
-
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
@@ -19,7 +16,7 @@ $(call inherit-product, device/htc/dlx/full_dlx.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := dlx
-PRODUCT_NAME := pac_dlx
+PRODUCT_NAME := cm_dlx
 PRODUCT_BRAND := Verizon
 PRODUCT_MODEL := HTC6435LVW
 PRODUCT_MANUFACTURER := HTC
